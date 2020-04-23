@@ -1,44 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
-//        [MarshalAs(UnmanagedType.**, SizeConst = 21)]
-//MarshalZone[] m_marshalZones;
-namespace ConsoleApp2
+namespace f1Teleform
 {
-    enum PacketType
+    public partial class Form1 : Form
     {
-        Motion = 0,
-        Session = 1,
-        LapData = 2,
-        Telemetry = 6
+        public PacketMotionData GloPacketMotionData;
+        public PacketSessionData GloPacketSessionData;
+        public CarTelemetryData GloMyCarTelemetryData;
+        public PacketLapData GloPacketLapData;
+        public float count = 0;
+        public Form1()
+        {
+            InitializeComponent();
 
-    }
-    class Program
-    {
+        }
+
+        private void btnStartTelemetry_Click(object sender, EventArgs e)
+        {
+            GetTelemetryData();
+
+
+        }
+        private void btnStopTelemetry_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
         private static readonly UdpClient udp = new UdpClient(20777);
         public static string dd;
         public static List<int> sizes = new List<int>();
-        static void Main(string[] args)
+        void GetTelemetryData()
         {
-
-            //byte[] str = getBytes(stru);
-            //string data2 = Encoding.UTF8.GetString(str);
-            //var bToS = fromBytes(str);
-            //var sToByteArray = fromBytes(str);
-
-
-            //string myData = "?\a\u0001\u0004????\u0015?????8C?\b\0\0\0\u0001\0\a\0GSemreozhan\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001\r\u0002\u0005\u001dlng_personal_best\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001\u0006\0\a\u001blng_personal_best\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001\u0002\0\u0003\u0003D. RICCIARDO\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001\t\u0001!\u0016M. VERSTAPPEN\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001\u000e\u0002\v4S. PEREZ\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001\u0011\u0004\u001f\u001cE. OCON\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001\u0013\u0003\u0012\rL. STROLL\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001=\u0005#DS. SIROTKIN\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001\n\u0006\u001b\u001dN. H??LKENBERG\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001\0\a7NC. SAINZ\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001<\b\u001c6B. HARTLEY\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\u0001;\t\n\u001cP. GASLY\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
-            //byte[] myDataArr = Encoding.UTF8.GetBytes(myData);
-
-            //var asdas  = fromBytes(myDataArr);
-            //var asdkasd = "232";
 
             try
             {
@@ -53,8 +54,10 @@ namespace ConsoleApp2
             //dd = "e2";
         }
 
-        private static void Receive(IAsyncResult ar)
+        private void Receive(IAsyncResult ar)
         {
+            if (count % 1000 != 0)
+                return;
             // izlenecek ip adresi tanımlanıyor
             IPEndPoint ip = new IPEndPoint(IPAddress.Any, 20777);
 
@@ -75,36 +78,51 @@ namespace ConsoleApp2
                 byte[] headless = new byte[bytes.Length - 21];
                 Array.Copy(bytes, 21, headless, 0, bytes.Length - 21);
 
-                if (packetId == (byte) PacketType.Motion)
+                if (packetId == (byte)PacketType.Motion)
                 {
-                    PacketMotionData moti = (PacketMotionData)GetInfos(bytes, typeof(PacketMotionData));
-                    Console.WriteLine(moti.m_frontWheelsAngle / 32767.0f);
-                }
-                else if (packetId == (byte) PacketType.Session)
-                {
-                    byte[] dumm = new byte[bytes.Length - 21];
-                    Array.Copy(bytes, 21, dumm, 0, bytes.Length - 22);
+                    //PacketMotionData moti = (PacketMotionData)GetInfos(bytes, typeof(PacketMotionData));
+                    //GloPacketMotionData = moti;
 
-                    PacketSessionData moti = (PacketSessionData)GetInfos(dumm, typeof(PacketSessionData));
+                    //Console.WriteLine(moti.m_frontWheelsAngle / 32767.0f);
+                }
+                else if (packetId == (byte)PacketType.Session)
+                {
+                   PacketSessionData moti = (PacketSessionData)GetInfos(headless, typeof(PacketSessionData));
+                    GloPacketSessionData = moti;
                     Console.WriteLine(ip.Address + "_" + len + "_ session type:" + moti.m_totalLaps + " - pit" + moti.m_numMarshalZones /*+ "        " + sessionInfo.m_sessionDuration +" / " + sessionInfo.m_sessionTimeLeft*/);
                 }
                 else if (packetId == (byte)PacketType.Telemetry)
                 {
-
                     PacketCarTelemetryData carTel = (PacketCarTelemetryData)GetInfos(headless, typeof(PacketCarTelemetryData));
                     CarTelemetryData[] teleDataList = carTel.m_carTelemetryData;
-                    CarTelemetryData myCard= teleDataList[0];
-
-
-                    Console.WriteLine(myCard.m_throttle +"-"+ myCard.m_brake + "     " + myCard.m_speed+ "     "+ myCard.m_steer +"--"+ myCard.m_engineRPM);
-
+                    CarTelemetryData myCar = teleDataList[0];
+                    var spList = teleDataList.Select(x => x.m_speed);
+                    GloMyCarTelemetryData = myCar;
+                    this.Invoke(new MethodInvoker(delegate ()
+                    {
+                        // Properties.Settings.Default.throValue = myCard.m_throttle;
+                        pbThrottle.Value = myCar.m_throttle;
+                        vpbGaz.Value = myCar.m_throttle;
+                        pbBrake.Value = myCar.m_brake;
+                        lblSpeed.Text = myCar.m_speed.ToString();
+                        tbSteer.Value = ((tbSteer.Maximum / 2) + Convert.ToInt32(myCar.m_steer));
+                        pbSteer.Value = Convert.ToInt32(myCar.m_steer) / 2 + 50;
+                        lbDRS.BackColor = myCar.m_drs == 1 ? Color.Green : Color.DarkGray;
+                        lbGear.Text = myCar.m_gear.ToString();
+                        pbRevLightPerc.Value = Convert.ToInt32(myCar.m_revLightsPercent) % 100;
+                        lbLFTyreInTemp.Text = myCar.m_tyresInnerTemperature[0].ToString();
+                        lbLFTyreSurfaceTemp.Text = myCar.m_tyresSurfaceTemperature[0].ToString();
+                        lbLFBrakeTemp.Text = myCar.m_brakesTemperature[0].ToString();
+                    }));
+                    //                    Console.WriteLine(myCar.m_throttle + "-" + myCar.m_brake + "     " + myCar.m_speed + "     " + myCar.m_steer + "--" + myCar.m_engineRPM);
                 }
-                else if(packetId == (byte)PacketType.LapData)
+                else if (packetId == (byte)PacketType.LapData)
                 {
 
-                    PacketLapData lpp = (PacketLapData)GetInfos(headless, typeof(PacketLapData));
-                    Console.WriteLine(ip.Address + "_" + len + "_ pos:" +
-                        lpp.m_lapData.m_currentLapTime + " - pit" + lpp.m_lapData.m_totalDistance);
+                    //PacketLapData lpp = (PacketLapData)GetInfos(headless, typeof(PacketLapData));
+                    //GloPacketLapData = lpp;
+                    //Console.WriteLine(ip.Address + "_" + len + "_ pos:" +
+                    //    lpp.m_lapData.m_currentLapTime + " - pit" + lpp.m_lapData.m_totalDistance);
 
                 }
 
@@ -132,8 +150,8 @@ namespace ConsoleApp2
             return structure;
         }
 
-    }
 
+    }
 
 
     #region PacketHeader
@@ -152,7 +170,7 @@ namespace ConsoleApp2
 
     #region CarMonitor  -  0
 
-    struct CarMotionData
+    public struct CarMotionData
     {
         float m_worldPositionX;           // World space X position
         float m_worldPositionY;           // World space Y position
@@ -174,7 +192,7 @@ namespace ConsoleApp2
         float m_roll;                     // Roll angle in radians
     };
 
-    struct PacketMotionData
+    public struct PacketMotionData
     {
         public PacketHeader m_header;               // Header
 
@@ -244,7 +262,7 @@ namespace ConsoleApp2
         public byte m_spectatorCarIndex;      // Index of the car being spectated *1
         public byte m_sliProNativeSupport;    // SLI Pro support, 0 = inactive, 1 = active *1
         public byte m_numMarshalZones;            // Number of marshal zones to follow *1
-        [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct ,SizeConst =21)]
+        [MarshalAs(UnmanagedType.ByValArray, ArraySubType = UnmanagedType.Struct, SizeConst = 21)]
         public MarshalZone[] m_marshalZones;         // List of marshal zones – max    5*21 = 105
         public byte m_safetyCarStatus;          // 0 = no safety car, 1 = full safety car  *1 
                                                 // 2 = virtual safety car
@@ -258,7 +276,7 @@ namespace ConsoleApp2
         Frequency: Rate as specified in menus
         Size: 1085 bytes
     */
-    struct CarTelemetryData
+    public struct CarTelemetryData
     {
         public UInt16 m_speed;                      // Speed of car in kilometres per hour
         public byte m_throttle;                   // Amount of throttle applied (0 to 100)
@@ -270,28 +288,28 @@ namespace ConsoleApp2
         public byte m_drs;                        // 0 = off, 1 = on
         public byte m_revLightsPercent;           // Rev lights indicator (percentage)
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public UInt16 [] m_brakesTemperature;       // Brakes temperature (celsius)
+        public UInt16[] m_brakesTemperature;       // Brakes temperature (celsius)
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public UInt16 [] m_tyresSurfaceTemperature; // Tyres surface temperature (celsius)
+        public UInt16[] m_tyresSurfaceTemperature; // Tyres surface temperature (celsius)
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public UInt16 [] m_tyresInnerTemperature;   // Tyres inner temperature (celsius)
-        public UInt16  m_engineTemperature;          // Engine temperature (celsius)
+        public UInt16[] m_tyresInnerTemperature;   // Tyres inner temperature (celsius)
+        public UInt16 m_engineTemperature;          // Engine temperature (celsius)
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public float  [] m_tyresPressure;           // Tyres pressure (PSI)
+        public float[] m_tyresPressure;           // Tyres pressure (PSI)
     };
     struct PacketCarTelemetryData
     {
         //public PacketHeader m_header;                // Header
 
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
-        public CarTelemetryData []m_carTelemetryData;
+        public CarTelemetryData[] m_carTelemetryData;
 
-        public UInt32 m_buttonStatus;         // Bit flags specifying which buttons are being
-                                       // pressed currently - see appendices
+        public UInt32 zm_buttonStatus;         // Bit flags specifying which buttons are being
+                                              // pressed currently - see appendices
     };
     #endregion
     #region LapData
-    struct LapData
+    public struct LapData
     {
         public float m_lastLapTime;           // Last lap time in seconds
         public float m_currentLapTime;        // Current time around the lap in seconds
@@ -299,9 +317,9 @@ namespace ConsoleApp2
         public float m_sector1Time;           // Sector 1 time in seconds
         public float m_sector2Time;           // Sector 2 time in seconds
         public float m_lapDistance;           // Distance vehicle is around current lap in metres – could
-                                        // be negative if line hasn’t been crossed yet
+                                              // be negative if line hasn’t been crossed yet
         public float m_totalDistance;         // Total distance travelled in session in metres – could
-                                        // be negative if line hasn’t been crossed yet
+                                              // be negative if line hasn’t been crossed yet
         public float m_safetyCarDelta;        // Delta in seconds for safety car
         public byte m_carPosition;           // Car race position
         public byte m_currentLapNum;         // Current lap number
@@ -311,20 +329,18 @@ namespace ConsoleApp2
         public byte m_penalties;             // Accumulated time penalties in seconds to be added
         public byte m_gridPosition;          // Grid position the vehicle started the race in
         public byte m_driverStatus;          // Status of driver - 0 = in garage, 1 = flying lap
-                                        // 2 = in lap, 3 = out lap, 4 = on track
+                                             // 2 = in lap, 3 = out lap, 4 = on track
         public byte m_resultStatus;          // Result status - 0 = invalid, 1 = inactive, 2 = active
-                                       // 3 = finished, 4 = disqualified, 5 = not classified
-                                       // 6 = retired
+                                             // 3 = finished, 4 = disqualified, 5 = not classified
+                                             // 6 = retired
     };
 
-    struct PacketLapData
+    public struct PacketLapData
     {
         //public PacketHeader m_header;              // Header
 
         public LapData m_lapData;         // Lap data for all cars on track
     };
-
     #endregion
-}
 
-//        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)] 
+}
