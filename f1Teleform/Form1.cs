@@ -31,11 +31,23 @@ namespace f1Teleform
         }
         private void btnStopTelemetry_Click(object sender, EventArgs e)
         {
+            //Test
+            //CarTelemetryData ddd = (CarTelemetryData)FromByteArray<CarTelemetryData>(asda);
 
+
+            byte[] data = new byte[] { 62, 9, 26, 44, 55, 66, 2, 179, 23, 10, 7, 166, 2, 164, 2, 151, 1,
+                 24, 1, 79, 0, 78, 0, 100, 0, 100, 0, 95, 0, 95, 0, 94, 0, 93, 0, 103, 0, 0, 0, 172, 65,
+                 0, 0, 172, 65, 0, 0, 184, 65, 0, 0, 184, 65 };
+
+            CarTelemetryData telem = (CarTelemetryData)GetInfos(data, typeof(CarTelemetryData));
+
+
+            // var asdas = telem;
+            var emre = "asdas";
         }
 
 
-        private static readonly UdpClient udp = new UdpClient(20777);
+        private static readonly UdpClient udp = new UdpClient(20777);//new UdpClient(20777);
         public static string dd;
         public static List<int> sizes = new List<int>();
         void GetTelemetryData()
@@ -49,9 +61,6 @@ namespace f1Teleform
             {
                 dd = "erer";
             }
-
-            dd = Console.ReadLine();
-            //dd = "e2";
         }
 
         private void Receive(IAsyncResult ar)
@@ -87,32 +96,43 @@ namespace f1Teleform
                 }
                 else if (packetId == (byte)PacketType.Session)
                 {
-                   PacketSessionData moti = (PacketSessionData)GetInfos(headless, typeof(PacketSessionData));
+                    PacketSessionData moti = (PacketSessionData)GetInfos(headless, typeof(PacketSessionData));
                     GloPacketSessionData = moti;
                     Console.WriteLine(ip.Address + "_" + len + "_ session type:" + moti.m_totalLaps + " - pit" + moti.m_numMarshalZones /*+ "        " + sessionInfo.m_sessionDuration +" / " + sessionInfo.m_sessionTimeLeft*/);
                 }
                 else if (packetId == (byte)PacketType.Telemetry)
                 {
+
+                    byte[] tel1 = new byte[53];
+                    Array.Copy(headless, 0, tel1, 0, 53);
+
+                    CarTelemetryData carTelakdjalskdas = (CarTelemetryData)GetInfos(tel1, typeof(CarTelemetryData));
+
+
+                    BitConverter.ToUInt16(new byte[] { tel1[11], tel1[12] }, 0);
+                    Console.WriteLine(carTelakdjalskdas);
+
                     PacketCarTelemetryData carTel = (PacketCarTelemetryData)GetInfos(headless, typeof(PacketCarTelemetryData));
                     CarTelemetryData[] teleDataList = carTel.m_carTelemetryData;
                     CarTelemetryData myCar = teleDataList[0];
-                    var spList = teleDataList.Select(x => x.m_speed);
+                    var spList = teleDataList.Select(x => x.t01_speed);
                     GloMyCarTelemetryData = myCar;
                     this.Invoke(new MethodInvoker(delegate ()
                     {
-                        // Properties.Settings.Default.throValue = myCard.m_throttle;
-                        pbThrottle.Value = myCar.m_throttle;
-                        vpbGaz.Value = myCar.m_throttle;
-                        pbBrake.Value = myCar.m_brake;
-                        lblSpeed.Text = myCar.m_speed.ToString();
-                        tbSteer.Value = ((tbSteer.Maximum / 2) + Convert.ToInt32(myCar.m_steer));
-                        pbSteer.Value = Convert.ToInt32(myCar.m_steer) / 2 + 50;
-                        lbDRS.BackColor = myCar.m_drs == 1 ? Color.Green : Color.DarkGray;
-                        lbGear.Text = myCar.m_gear.ToString();
-                        pbRevLightPerc.Value = Convert.ToInt32(myCar.m_revLightsPercent) % 100;
-                        lbLFTyreInTemp.Text = myCar.m_tyresInnerTemperature[0].ToString();
-                        lbLFTyreSurfaceTemp.Text = myCar.m_tyresSurfaceTemperature[0].ToString();
-                        lbLFBrakeTemp.Text = myCar.m_brakesTemperature[0].ToString();
+                        Properties.Settings.Default.throValue = myCar.t02_throttle;
+                        pbThrottle.Value = myCar.t02_throttle;
+                        vpbGaz.Value = myCar.t02_throttle;
+                        pbBrake.Value = myCar.t04_brake;
+                        lblSpeed.Text = myCar.t01_speed.ToString();
+                        tbSteer.Value = ((tbSteer.Maximum / 2) + Convert.ToInt32(myCar.t03_steer));
+                        pbSteer.Value = Convert.ToInt32(myCar.t03_steer) / 2 + 50;
+                        lbDRS.BackColor = myCar.t09_drs == 1 ? Color.Green : Color.DarkGray;
+                        lbGear.Text = BitConverter.ToUInt16(new byte[] { tel1[7], tel1[8] }, 0).ToString();// myCar.fm_gear.ToString();
+                        pbRevLightPerc.Value = Convert.ToInt32(myCar.t10_revLightsPercent) % 100;
+                        lbLFTyreInTemp.Text = myCar.t13_tyresInnerTemperature.FrontLeft.ToString();
+                        lbLFTyreSurfaceTemp.Text = myCar.t12_tyresSurfaceTemperature.FrontLeft.ToString();
+                        lbLFBrakeTemp.Text = myCar.t11_brakesTemperature.FrontLeft.ToString();//BitConverter.ToUInt16(new byte[] { tel1[11], tel1[12] }, 0)
+                        lbLFTyrePressure.Text = myCar.t15_tyresPressure.FrontLeft.ToString();
                     }));
                     //                    Console.WriteLine(myCar.m_throttle + "-" + myCar.m_brake + "     " + myCar.m_speed + "     " + myCar.m_steer + "--" + myCar.m_engineRPM);
                 }
@@ -155,16 +175,16 @@ namespace f1Teleform
 
 
     #region PacketHeader
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Explicit, Size =21)]
     public struct PacketHeader
     {
-        public UInt16 m_packetFormat;         // 2018  -2
-        public byte m_packetVersion;        // Version of this packet type, all start from 1 -1
-        public byte m_packetId;             // Identifier for the packet type, see below -1
-        public UInt64 m_sessionUID;           // Unique identifier for the session -8
-        public uint m_sessionTime;          // Session timestamp -4
-        public uint m_frameIdentifier;      // Identifier for the frame the data was retrieved on -4
-        public byte m_playerCarIndex;       // Index of player's car in the array-1
+        [FieldOffset(0)] public UInt16 m_packetFormat;         // 2018  -2
+        [FieldOffset(2)] public byte m_packetVersion;        // Version of this packet type, all start from 1 -1
+        [FieldOffset(3)] public byte m_packetId;             // Identifier for the packet type, see below -1
+        [FieldOffset(4)] public UInt64 m_sessionUID;           // Unique identifier for the session -8
+        [FieldOffset(12)] public uint m_sessionTime;          // Session timestamp -4
+        [FieldOffset(16)] public uint m_frameIdentifier;      // Identifier for the frame the data was retrieved on -4
+        [FieldOffset(20)] public byte m_playerCarIndex;       // Index of player's car in the array-1
     };
     #endregion
 
@@ -276,27 +296,59 @@ namespace f1Teleform
         Frequency: Rate as specified in menus
         Size: 1085 bytes
     */
+    [StructLayout(LayoutKind.Explicit, Size = 47)]
     public struct CarTelemetryData
     {
-        public UInt16 m_speed;                      // Speed of car in kilometres per hour
-        public byte m_throttle;                   // Amount of throttle applied (0 to 100)
-        public sbyte m_steer;                      // Steering (-100 (full lock left) to 100 (full lock right))
-        public byte m_brake;                      // Amount of brake applied (0 to 100)
-        public byte m_clutch;                     // Amount of clutch applied (0 to 100)
-        public sbyte m_gear;                       // Gear selected (1-8, N=0, R=-1)
-        public UInt16 m_engineRPM;                  // Engine RPM
-        public byte m_drs;                        // 0 = off, 1 = on
-        public byte m_revLightsPercent;           // Rev lights indicator (percentage)
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public UInt16[] m_brakesTemperature;       // Brakes temperature (celsius)
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public UInt16[] m_tyresSurfaceTemperature; // Tyres surface temperature (celsius)
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public UInt16[] m_tyresInnerTemperature;   // Tyres inner temperature (celsius)
-        public UInt16 m_engineTemperature;          // Engine temperature (celsius)
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public float[] m_tyresPressure;           // Tyres pressure (PSI)
+        [FieldOffset(0)]
+        public ushort t01_speed;                      // Speed of car in kilometres per hour
+
+        [FieldOffset(2)]
+        public byte t02_throttle;                   // Amount of throttle applied (0 to 100)
+
+        [FieldOffset(3)]
+        public sbyte t03_steer;                      // Steering (-100 (full lock left) to 100 (full lock right))
+
+        [FieldOffset(4)]
+        public byte t04_brake;                      // Amount of brake applied (0 to 100)
+
+        [FieldOffset(5)]
+        public byte t06_clutch;                     // Amount of clutch applied (0 to 100)
+
+        [FieldOffset(6)]
+        public sbyte t07_gear;                       // Gear selected (1-8, N=0, R=-1)       
+
+        [FieldOffset(7)]
+        public UInt16 t08_engineRPM;                  // Engine RPM
+
+        [FieldOffset(9)]
+        public byte t09_drs;                        // 0 = off, 1 = on
+
+        [FieldOffset(10)]
+        public byte t10_revLightsPercent;           // Rev lights indicator (percentage)
+
+        [FieldOffset(11)]
+        public CardBody<ushort> t11_brakesTemperature;       // Brakes temperature (celsius)
+
+        [FieldOffset(19)]
+        public CardBody<ushort> t12_tyresSurfaceTemperature;  // Tyres surface temperature (celsius)
+
+        [FieldOffset(27)]
+        public CardBody<ushort> t13_tyresInnerTemperature; // Tyres inner temperature (celsius)
+
+        [FieldOffset(35)]
+        public UInt16 t14_engineTemperature;          // Engine temperature (celsius)
+
+        [FieldOffset(37)]
+        public CardBody<float> t15_tyresPressure;           // Tyres pressure (PSI)
+
     };
+    public struct CardBody<T> 
+    {
+        public T RearLeft;
+        public T RearRight;
+        public T FrontLeft;
+        public T FrontRight;
+    }
     struct PacketCarTelemetryData
     {
         //public PacketHeader m_header;                // Header
@@ -305,7 +357,7 @@ namespace f1Teleform
         public CarTelemetryData[] m_carTelemetryData;
 
         public UInt32 zm_buttonStatus;         // Bit flags specifying which buttons are being
-                                              // pressed currently - see appendices
+                                               // pressed currently - see appendices
     };
     #endregion
     #region LapData

@@ -43,10 +43,11 @@ namespace f1Teleform
             this.pbClutch = new System.Windows.Forms.ProgressBar();
             this.vpbGaz = new f1Teleform.Component.VerticalProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbLFBrakeTemp = new System.Windows.Forms.Label();
-            this.lbLFTyreSurfaceTemp = new System.Windows.Forms.Label();
             this.lbLFTyreInTemp = new System.Windows.Forms.Label();
+            this.lbLFTyreSurfaceTemp = new System.Windows.Forms.Label();
+            this.lbLFBrakeTemp = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbLFTyrePressure = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tbSteer)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -169,6 +170,7 @@ namespace f1Teleform
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbLFTyrePressure);
             this.panel1.Controls.Add(this.lbLFTyreInTemp);
             this.panel1.Controls.Add(this.lbLFTyreSurfaceTemp);
             this.panel1.Controls.Add(this.lbLFBrakeTemp);
@@ -178,23 +180,14 @@ namespace f1Teleform
             this.panel1.Size = new System.Drawing.Size(282, 332);
             this.panel1.TabIndex = 13;
             // 
-            // pictureBox1
+            // lbLFTyreInTemp
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Red;
-            this.pictureBox1.Location = new System.Drawing.Point(92, 63);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(106, 198);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lbLFBrakeTemp
-            // 
-            this.lbLFBrakeTemp.AutoSize = true;
-            this.lbLFBrakeTemp.Location = new System.Drawing.Point(31, 111);
-            this.lbLFBrakeTemp.Name = "lbLFBrakeTemp";
-            this.lbLFBrakeTemp.Size = new System.Drawing.Size(35, 13);
-            this.lbLFBrakeTemp.TabIndex = 1;
-            this.lbLFBrakeTemp.Text = "label1";
+            this.lbLFTyreInTemp.AutoSize = true;
+            this.lbLFTyreInTemp.Location = new System.Drawing.Point(31, 45);
+            this.lbLFTyreInTemp.Name = "lbLFTyreInTemp";
+            this.lbLFTyreInTemp.Size = new System.Drawing.Size(35, 13);
+            this.lbLFTyreInTemp.TabIndex = 3;
+            this.lbLFTyreInTemp.Text = "label3";
             // 
             // lbLFTyreSurfaceTemp
             // 
@@ -205,14 +198,32 @@ namespace f1Teleform
             this.lbLFTyreSurfaceTemp.TabIndex = 2;
             this.lbLFTyreSurfaceTemp.Text = "label2";
             // 
-            // lbLFTyreInTemp
+            // lbLFBrakeTemp
             // 
-            this.lbLFTyreInTemp.AutoSize = true;
-            this.lbLFTyreInTemp.Location = new System.Drawing.Point(31, 45);
-            this.lbLFTyreInTemp.Name = "lbLFTyreInTemp";
-            this.lbLFTyreInTemp.Size = new System.Drawing.Size(35, 13);
-            this.lbLFTyreInTemp.TabIndex = 3;
-            this.lbLFTyreInTemp.Text = "label3";
+            this.lbLFBrakeTemp.AutoSize = true;
+            this.lbLFBrakeTemp.Location = new System.Drawing.Point(31, 111);
+            this.lbLFBrakeTemp.Name = "lbLFBrakeTemp";
+            this.lbLFBrakeTemp.Size = new System.Drawing.Size(35, 13);
+            this.lbLFBrakeTemp.TabIndex = 1;
+            this.lbLFBrakeTemp.Text = "label1";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Red;
+            this.pictureBox1.Location = new System.Drawing.Point(92, 63);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(106, 198);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lbLFTyrePressure
+            // 
+            this.lbLFTyrePressure.AutoSize = true;
+            this.lbLFTyrePressure.Location = new System.Drawing.Point(4, 76);
+            this.lbLFTyrePressure.Name = "lbLFTyrePressure";
+            this.lbLFTyrePressure.Size = new System.Drawing.Size(35, 13);
+            this.lbLFTyrePressure.TabIndex = 4;
+            this.lbLFTyrePressure.Text = "label1";
             // 
             // Form1
             // 
@@ -262,6 +273,7 @@ namespace f1Teleform
         private System.Windows.Forms.Label lbLFTyreSurfaceTemp;
         private System.Windows.Forms.Label lbLFBrakeTemp;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lbLFTyrePressure;
     }
 }
 
