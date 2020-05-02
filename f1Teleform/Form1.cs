@@ -119,21 +119,8 @@ namespace f1Teleform
                     GloMyCarTelemetryData = myCar;
                     this.Invoke(new MethodInvoker(delegate ()
                     {
-                        Properties.Settings.Default.throValue = myCar.t02_throttle;
-                        pbThrottle.Value = myCar.t02_throttle;
-                        vpbGaz.Value = myCar.t02_throttle;
-                        pbBrake.Value = myCar.t04_brake;
-                        lblSpeed.Text = myCar.t01_speed.ToString();
-                        tbSteer.Value = ((tbSteer.Maximum / 2) + Convert.ToInt32(myCar.t03_steer));
-                        pbSteer.Value = Convert.ToInt32(myCar.t03_steer) / 2 + 50;
-                        lbDRS.BackColor = myCar.t09_drs == 1 ? Color.Green : Color.DarkGray;
-                        lbGear.Text = BitConverter.ToUInt16(new byte[] { tel1[7], tel1[8] }, 0).ToString();// myCar.fm_gear.ToString();
-                        pbRevLightPerc.Value = Convert.ToInt32(myCar.t10_revLightsPercent) % 100;
-                        lbLFTyreInTemp.Text = myCar.t13_tyresInnerTemperature.FrontLeft.ToString();
-                        lbLFTyreSurfaceTemp.Text = myCar.t12_tyresSurfaceTemperature.FrontLeft.ToString();
-                        lbLFBrakeTemp.Text = myCar.t11_brakesTemperature.FrontLeft.ToString();//BitConverter.ToUInt16(new byte[] { tel1[11], tel1[12] }, 0)
-                        lbLFTyrePressure.Text = myCar.t15_tyresPressure.FrontLeft.ToString();
-                    }));
+                        DrawTelemetryData(myCar);
+                       }));
                     //                    Console.WriteLine(myCar.m_throttle + "-" + myCar.m_brake + "     " + myCar.m_speed + "     " + myCar.m_steer + "--" + myCar.m_engineRPM);
                 }
                 else if (packetId == (byte)PacketType.LapData)
@@ -151,6 +138,43 @@ namespace f1Teleform
             //Thread.Sleep(100);
 
             udp.BeginReceive(new AsyncCallback(Receive), null);
+
+        }
+
+        private void DrawTelemetryData(CarTelemetryData myCar)
+        {
+            Properties.Settings.Default.throValue = myCar.t02_throttle;
+            pbThrottle.Value = myCar.t02_throttle;
+            vpbGaz.Value = myCar.t02_throttle;
+            pbBrake.Value = myCar.t04_brake;
+            lblSpeed.Text = myCar.t01_speed.ToString();
+            tbSteer.Value = ((tbSteer.Maximum / 2) + Convert.ToInt32(myCar.t03_steer));
+            pbSteer.Value = Convert.ToInt32(myCar.t03_steer) / 2 + 50;
+            lbDRS.BackColor = myCar.t09_drs == 1 ? Color.Green : Color.DarkGray;
+            lbGear.Text = myCar.t07_gear.ToString();
+            pbRevLightPerc.Value = Convert.ToInt32(myCar.t10_revLightsPercent) % 100;
+           
+            lbRLTyreInTemp.Text = myCar.t13_tyresInnerTemperature.RearLeft.ToString();
+            lbRRTyreInTemp.Text = myCar.t13_tyresInnerTemperature.RearRight.ToString();
+            lbFRTyreInTemp.Text = myCar.t13_tyresInnerTemperature.FrontRight.ToString();
+            lbFLTyreInTemp.Text = myCar.t13_tyresInnerTemperature.FrontLeft.ToString();
+
+            lbRLTyreSurfaceTemp.Text = myCar.t12_tyresSurfaceTemperature.RearLeft.ToString();
+            lbRRTyreSurfaceTemp.Text = myCar.t12_tyresSurfaceTemperature.RearRight.ToString();
+            lbFRTyreSurfaceTemp.Text = myCar.t12_tyresSurfaceTemperature.FrontRight.ToString();
+            lbFLTyreSurfaceTemp.Text = myCar.t12_tyresSurfaceTemperature.FrontLeft.ToString();
+
+            lbRLBrakeTemp.Text = myCar.t11_brakesTemperature.RearLeft.ToString();
+            lbRRBrakeTemp.Text = myCar.t11_brakesTemperature.RearRight.ToString();
+            lbFRBrakeTemp.Text = myCar.t11_brakesTemperature.FrontRight.ToString();
+            lbFLBrakeTemp.Text = myCar.t11_brakesTemperature.FrontLeft.ToString();
+
+            lbEngineTemp.Text = myCar.t14_engineTemperature.ToString(); 
+
+            lbFLTyrePressure.Text = myCar.t15_tyresPressure.FrontLeft.ToString();
+            lbFLTyrePressure.Text = myCar.t15_tyresPressure.FrontLeft.ToString();
+            lbFLTyrePressure.Text = myCar.t15_tyresPressure.FrontLeft.ToString();
+            lbFLTyrePressure.Text = myCar.t15_tyresPressure.FrontLeft.ToString();
 
         }
 
