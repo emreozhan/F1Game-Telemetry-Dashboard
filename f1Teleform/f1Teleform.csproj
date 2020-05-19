@@ -83,6 +83,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\f1_2018udp_Guide.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

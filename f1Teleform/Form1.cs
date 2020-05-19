@@ -65,8 +65,8 @@ namespace f1Teleform
 
         private void Receive(IAsyncResult ar)
         {
-            if (count % 1000 != 0)
-                return;
+            //if (count % 1000 != 0)
+            //    return;
             // izlenecek ip adresi tanımlanıyor
             IPEndPoint ip = new IPEndPoint(IPAddress.Any, 20777);
 
@@ -175,7 +175,7 @@ namespace f1Teleform
             lbFLTyrePressure.Text = myCar.t15_tyresPressure.FrontLeft.ToString();
             lbFLTyrePressure.Text = myCar.t15_tyresPressure.FrontLeft.ToString();
             lbFLTyrePressure.Text = myCar.t15_tyresPressure.FrontLeft.ToString();
-
+            richTextBox1.Text += String.Format("\r\n Added. {0}-{1}", DateTime.Now , count);
         }
 
         static object GetInfos(byte[] myDataArr, Type type)

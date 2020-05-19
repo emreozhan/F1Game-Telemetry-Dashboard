@@ -35,32 +35,33 @@ namespace f1Teleform
             this.pbSteer = new System.Windows.Forms.ProgressBar();
             this.tbSteer = new System.Windows.Forms.TrackBar();
             this.lblSpeed = new System.Windows.Forms.Label();
-            this.pbBrake = new f1Teleform.Component.VerticalProgressBar();
-            this.pbThrottle = new f1Teleform.Component.VerticalProgressBar();
             this.lbDRS = new System.Windows.Forms.Label();
             this.lbGear = new System.Windows.Forms.Label();
             this.pbRevLightPerc = new System.Windows.Forms.ProgressBar();
             this.pbClutch = new System.Windows.Forms.ProgressBar();
-            this.vpbGaz = new f1Teleform.Component.VerticalProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbEngineTemp = new System.Windows.Forms.Label();
+            this.lbRRTyrePressure = new System.Windows.Forms.Label();
+            this.lbRLTyrePressure = new System.Windows.Forms.Label();
+            this.lbFRTyrePressure = new System.Windows.Forms.Label();
+            this.lbRRBrakeTemp = new System.Windows.Forms.Label();
+            this.lbRLBrakeTemp = new System.Windows.Forms.Label();
+            this.lbFRBrakeTemp = new System.Windows.Forms.Label();
+            this.lbRRTyreSurfaceTemp = new System.Windows.Forms.Label();
+            this.lbRLTyreSurfaceTemp = new System.Windows.Forms.Label();
+            this.lbFRTyreSurfaceTemp = new System.Windows.Forms.Label();
+            this.lbRRTyreInTemp = new System.Windows.Forms.Label();
+            this.lbRLTyreInTemp = new System.Windows.Forms.Label();
+            this.lbFRTyreInTemp = new System.Windows.Forms.Label();
             this.lbFLTyrePressure = new System.Windows.Forms.Label();
             this.lbFLTyreInTemp = new System.Windows.Forms.Label();
             this.lbFLTyreSurfaceTemp = new System.Windows.Forms.Label();
             this.lbFLBrakeTemp = new System.Windows.Forms.Label();
-            this.lbFRTyreInTemp = new System.Windows.Forms.Label();
-            this.lbRLTyreInTemp = new System.Windows.Forms.Label();
-            this.lbRRTyreInTemp = new System.Windows.Forms.Label();
-            this.lbFRTyreSurfaceTemp = new System.Windows.Forms.Label();
-            this.lbRLTyreSurfaceTemp = new System.Windows.Forms.Label();
-            this.lbRRTyreSurfaceTemp = new System.Windows.Forms.Label();
-            this.lbFRBrakeTemp = new System.Windows.Forms.Label();
-            this.lbRLBrakeTemp = new System.Windows.Forms.Label();
-            this.lbRRBrakeTemp = new System.Windows.Forms.Label();
-            this.lbFRTyrePressure = new System.Windows.Forms.Label();
-            this.lbRLTyrePressure = new System.Windows.Forms.Label();
-            this.lbRRTyrePressure = new System.Windows.Forms.Label();
-            this.lbEngineTemp = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.vpbGaz = new f1Teleform.Component.VerticalProgressBar();
+            this.pbBrake = new f1Teleform.Component.VerticalProgressBar();
+            this.pbThrottle = new f1Teleform.Component.VerticalProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.tbSteer)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -112,27 +113,6 @@ namespace f1Teleform
             this.lblSpeed.TabIndex = 7;
             this.lblSpeed.Text = "0";
             // 
-            // pbBrake
-            // 
-            this.pbBrake.Location = new System.Drawing.Point(163, 138);
-            this.pbBrake.Name = "pbBrake";
-            this.pbBrake.Size = new System.Drawing.Size(26, 186);
-            this.pbBrake.TabIndex = 3;
-            this.pbBrake.Value = 1;
-            // 
-            // pbThrottle
-            // 
-            this.pbThrottle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.pbThrottle.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pbThrottle.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pbThrottle.Location = new System.Drawing.Point(89, 138);
-            this.pbThrottle.Name = "pbThrottle";
-            this.pbThrottle.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.pbThrottle.Size = new System.Drawing.Size(26, 186);
-            this.pbThrottle.Step = 1;
-            this.pbThrottle.TabIndex = 2;
-            this.pbThrottle.Value = 1;
-            // 
             // lbDRS
             // 
             this.lbDRS.AutoSize = true;
@@ -168,18 +148,6 @@ namespace f1Teleform
             this.pbClutch.Size = new System.Drawing.Size(100, 23);
             this.pbClutch.TabIndex = 11;
             // 
-            // vpbGaz
-            // 
-            this.vpbGaz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.vpbGaz.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.vpbGaz.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.vpbGaz.Location = new System.Drawing.Point(47, 138);
-            this.vpbGaz.Name = "vpbGaz";
-            this.vpbGaz.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.vpbGaz.Size = new System.Drawing.Size(26, 186);
-            this.vpbGaz.TabIndex = 12;
-            this.vpbGaz.Value = 1;
-            // 
             // panel2
             // 
             this.panel2.BackgroundImage = global::f1Teleform.Properties.Resources.tyresWear1;
@@ -212,6 +180,162 @@ namespace f1Teleform
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(482, 269);
             this.panel1.TabIndex = 13;
+            // 
+            // lbEngineTemp
+            // 
+            this.lbEngineTemp.AutoSize = true;
+            this.lbEngineTemp.BackColor = System.Drawing.Color.Transparent;
+            this.lbEngineTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbEngineTemp.ForeColor = System.Drawing.Color.White;
+            this.lbEngineTemp.Location = new System.Drawing.Point(233, 149);
+            this.lbEngineTemp.Name = "lbEngineTemp";
+            this.lbEngineTemp.Size = new System.Drawing.Size(17, 17);
+            this.lbEngineTemp.TabIndex = 18;
+            this.lbEngineTemp.Text = "0";
+            // 
+            // lbRRTyrePressure
+            // 
+            this.lbRRTyrePressure.AutoSize = true;
+            this.lbRRTyrePressure.BackColor = System.Drawing.Color.Transparent;
+            this.lbRRTyrePressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRRTyrePressure.ForeColor = System.Drawing.Color.White;
+            this.lbRRTyrePressure.Location = new System.Drawing.Point(301, 177);
+            this.lbRRTyrePressure.Name = "lbRRTyrePressure";
+            this.lbRRTyrePressure.Size = new System.Drawing.Size(17, 17);
+            this.lbRRTyrePressure.TabIndex = 16;
+            this.lbRRTyrePressure.Text = "0";
+            // 
+            // lbRLTyrePressure
+            // 
+            this.lbRLTyrePressure.AutoSize = true;
+            this.lbRLTyrePressure.BackColor = System.Drawing.Color.Transparent;
+            this.lbRLTyrePressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRLTyrePressure.ForeColor = System.Drawing.Color.White;
+            this.lbRLTyrePressure.Location = new System.Drawing.Point(164, 176);
+            this.lbRLTyrePressure.Name = "lbRLTyrePressure";
+            this.lbRLTyrePressure.Size = new System.Drawing.Size(17, 17);
+            this.lbRLTyrePressure.TabIndex = 15;
+            this.lbRLTyrePressure.Text = "0";
+            // 
+            // lbFRTyrePressure
+            // 
+            this.lbFRTyrePressure.AutoSize = true;
+            this.lbFRTyrePressure.BackColor = System.Drawing.Color.Transparent;
+            this.lbFRTyrePressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFRTyrePressure.ForeColor = System.Drawing.Color.White;
+            this.lbFRTyrePressure.Location = new System.Drawing.Point(299, 36);
+            this.lbFRTyrePressure.Name = "lbFRTyrePressure";
+            this.lbFRTyrePressure.Size = new System.Drawing.Size(17, 17);
+            this.lbFRTyrePressure.TabIndex = 14;
+            this.lbFRTyrePressure.Text = "0";
+            // 
+            // lbRRBrakeTemp
+            // 
+            this.lbRRBrakeTemp.AutoSize = true;
+            this.lbRRBrakeTemp.BackColor = System.Drawing.Color.Transparent;
+            this.lbRRBrakeTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRRBrakeTemp.ForeColor = System.Drawing.Color.White;
+            this.lbRRBrakeTemp.Location = new System.Drawing.Point(367, 227);
+            this.lbRRBrakeTemp.Name = "lbRRBrakeTemp";
+            this.lbRRBrakeTemp.Size = new System.Drawing.Size(17, 17);
+            this.lbRRBrakeTemp.TabIndex = 13;
+            this.lbRRBrakeTemp.Text = "0";
+            // 
+            // lbRLBrakeTemp
+            // 
+            this.lbRLBrakeTemp.AutoSize = true;
+            this.lbRLBrakeTemp.BackColor = System.Drawing.Color.Transparent;
+            this.lbRLBrakeTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRLBrakeTemp.ForeColor = System.Drawing.Color.White;
+            this.lbRLBrakeTemp.Location = new System.Drawing.Point(62, 227);
+            this.lbRLBrakeTemp.Name = "lbRLBrakeTemp";
+            this.lbRLBrakeTemp.Size = new System.Drawing.Size(17, 17);
+            this.lbRLBrakeTemp.TabIndex = 12;
+            this.lbRLBrakeTemp.Text = "0";
+            // 
+            // lbFRBrakeTemp
+            // 
+            this.lbFRBrakeTemp.AutoSize = true;
+            this.lbFRBrakeTemp.BackColor = System.Drawing.Color.Transparent;
+            this.lbFRBrakeTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFRBrakeTemp.ForeColor = System.Drawing.Color.White;
+            this.lbFRBrakeTemp.Location = new System.Drawing.Point(367, 89);
+            this.lbFRBrakeTemp.Name = "lbFRBrakeTemp";
+            this.lbFRBrakeTemp.Size = new System.Drawing.Size(17, 17);
+            this.lbFRBrakeTemp.TabIndex = 11;
+            this.lbFRBrakeTemp.Text = "0";
+            // 
+            // lbRRTyreSurfaceTemp
+            // 
+            this.lbRRTyreSurfaceTemp.AutoSize = true;
+            this.lbRRTyreSurfaceTemp.BackColor = System.Drawing.Color.Transparent;
+            this.lbRRTyreSurfaceTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRRTyreSurfaceTemp.ForeColor = System.Drawing.Color.White;
+            this.lbRRTyreSurfaceTemp.Location = new System.Drawing.Point(367, 197);
+            this.lbRRTyreSurfaceTemp.Name = "lbRRTyreSurfaceTemp";
+            this.lbRRTyreSurfaceTemp.Size = new System.Drawing.Size(17, 17);
+            this.lbRRTyreSurfaceTemp.TabIndex = 10;
+            this.lbRRTyreSurfaceTemp.Text = "0";
+            // 
+            // lbRLTyreSurfaceTemp
+            // 
+            this.lbRLTyreSurfaceTemp.AutoSize = true;
+            this.lbRLTyreSurfaceTemp.BackColor = System.Drawing.Color.Transparent;
+            this.lbRLTyreSurfaceTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRLTyreSurfaceTemp.ForeColor = System.Drawing.Color.White;
+            this.lbRLTyreSurfaceTemp.Location = new System.Drawing.Point(62, 197);
+            this.lbRLTyreSurfaceTemp.Name = "lbRLTyreSurfaceTemp";
+            this.lbRLTyreSurfaceTemp.Size = new System.Drawing.Size(17, 17);
+            this.lbRLTyreSurfaceTemp.TabIndex = 9;
+            this.lbRLTyreSurfaceTemp.Text = "0";
+            // 
+            // lbFRTyreSurfaceTemp
+            // 
+            this.lbFRTyreSurfaceTemp.AutoSize = true;
+            this.lbFRTyreSurfaceTemp.BackColor = System.Drawing.Color.Transparent;
+            this.lbFRTyreSurfaceTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFRTyreSurfaceTemp.ForeColor = System.Drawing.Color.White;
+            this.lbFRTyreSurfaceTemp.Location = new System.Drawing.Point(367, 60);
+            this.lbFRTyreSurfaceTemp.Name = "lbFRTyreSurfaceTemp";
+            this.lbFRTyreSurfaceTemp.Size = new System.Drawing.Size(17, 17);
+            this.lbFRTyreSurfaceTemp.TabIndex = 8;
+            this.lbFRTyreSurfaceTemp.Text = "0";
+            // 
+            // lbRRTyreInTemp
+            // 
+            this.lbRRTyreInTemp.AutoSize = true;
+            this.lbRRTyreInTemp.BackColor = System.Drawing.Color.Transparent;
+            this.lbRRTyreInTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRRTyreInTemp.ForeColor = System.Drawing.Color.White;
+            this.lbRRTyreInTemp.Location = new System.Drawing.Point(367, 169);
+            this.lbRRTyreInTemp.Name = "lbRRTyreInTemp";
+            this.lbRRTyreInTemp.Size = new System.Drawing.Size(17, 17);
+            this.lbRRTyreInTemp.TabIndex = 7;
+            this.lbRRTyreInTemp.Text = "0";
+            // 
+            // lbRLTyreInTemp
+            // 
+            this.lbRLTyreInTemp.AutoSize = true;
+            this.lbRLTyreInTemp.BackColor = System.Drawing.Color.Transparent;
+            this.lbRLTyreInTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRLTyreInTemp.ForeColor = System.Drawing.Color.White;
+            this.lbRLTyreInTemp.Location = new System.Drawing.Point(62, 169);
+            this.lbRLTyreInTemp.Name = "lbRLTyreInTemp";
+            this.lbRLTyreInTemp.Size = new System.Drawing.Size(17, 17);
+            this.lbRLTyreInTemp.TabIndex = 6;
+            this.lbRLTyreInTemp.Text = "0";
+            // 
+            // lbFRTyreInTemp
+            // 
+            this.lbFRTyreInTemp.AutoSize = true;
+            this.lbFRTyreInTemp.BackColor = System.Drawing.Color.Transparent;
+            this.lbFRTyreInTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFRTyreInTemp.ForeColor = System.Drawing.Color.White;
+            this.lbFRTyreInTemp.Location = new System.Drawing.Point(367, 30);
+            this.lbFRTyreInTemp.Name = "lbFRTyreInTemp";
+            this.lbFRTyreInTemp.Size = new System.Drawing.Size(17, 17);
+            this.lbFRTyreInTemp.TabIndex = 5;
+            this.lbFRTyreInTemp.Text = "0";
             // 
             // lbFLTyrePressure
             // 
@@ -261,167 +385,53 @@ namespace f1Teleform
             this.lbFLBrakeTemp.TabIndex = 1;
             this.lbFLBrakeTemp.Text = "0";
             // 
-            // lbFRTyreInTemp
+            // richTextBox1
             // 
-            this.lbFRTyreInTemp.AutoSize = true;
-            this.lbFRTyreInTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbFRTyreInTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFRTyreInTemp.ForeColor = System.Drawing.Color.White;
-            this.lbFRTyreInTemp.Location = new System.Drawing.Point(367, 30);
-            this.lbFRTyreInTemp.Name = "lbFRTyreInTemp";
-            this.lbFRTyreInTemp.Size = new System.Drawing.Size(17, 17);
-            this.lbFRTyreInTemp.TabIndex = 5;
-            this.lbFRTyreInTemp.Text = "0";
+            this.richTextBox1.Location = new System.Drawing.Point(220, 322);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(239, 443);
+            this.richTextBox1.TabIndex = 15;
+            this.richTextBox1.Text = "";
             // 
-            // lbRLTyreInTemp
+            // vpbGaz
             // 
-            this.lbRLTyreInTemp.AutoSize = true;
-            this.lbRLTyreInTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbRLTyreInTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRLTyreInTemp.ForeColor = System.Drawing.Color.White;
-            this.lbRLTyreInTemp.Location = new System.Drawing.Point(62, 169);
-            this.lbRLTyreInTemp.Name = "lbRLTyreInTemp";
-            this.lbRLTyreInTemp.Size = new System.Drawing.Size(17, 17);
-            this.lbRLTyreInTemp.TabIndex = 6;
-            this.lbRLTyreInTemp.Text = "0";
+            this.vpbGaz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.vpbGaz.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.vpbGaz.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.vpbGaz.Location = new System.Drawing.Point(47, 138);
+            this.vpbGaz.Name = "vpbGaz";
+            this.vpbGaz.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.vpbGaz.Size = new System.Drawing.Size(26, 186);
+            this.vpbGaz.TabIndex = 12;
+            this.vpbGaz.Value = 1;
             // 
-            // lbRRTyreInTemp
+            // pbBrake
             // 
-            this.lbRRTyreInTemp.AutoSize = true;
-            this.lbRRTyreInTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbRRTyreInTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRRTyreInTemp.ForeColor = System.Drawing.Color.White;
-            this.lbRRTyreInTemp.Location = new System.Drawing.Point(367, 169);
-            this.lbRRTyreInTemp.Name = "lbRRTyreInTemp";
-            this.lbRRTyreInTemp.Size = new System.Drawing.Size(17, 17);
-            this.lbRRTyreInTemp.TabIndex = 7;
-            this.lbRRTyreInTemp.Text = "0";
+            this.pbBrake.Location = new System.Drawing.Point(163, 138);
+            this.pbBrake.Name = "pbBrake";
+            this.pbBrake.Size = new System.Drawing.Size(26, 186);
+            this.pbBrake.TabIndex = 3;
+            this.pbBrake.Value = 1;
             // 
-            // lbFRTyreSurfaceTemp
+            // pbThrottle
             // 
-            this.lbFRTyreSurfaceTemp.AutoSize = true;
-            this.lbFRTyreSurfaceTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbFRTyreSurfaceTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFRTyreSurfaceTemp.ForeColor = System.Drawing.Color.White;
-            this.lbFRTyreSurfaceTemp.Location = new System.Drawing.Point(367, 60);
-            this.lbFRTyreSurfaceTemp.Name = "lbFRTyreSurfaceTemp";
-            this.lbFRTyreSurfaceTemp.Size = new System.Drawing.Size(17, 17);
-            this.lbFRTyreSurfaceTemp.TabIndex = 8;
-            this.lbFRTyreSurfaceTemp.Text = "0";
-            // 
-            // lbRLTyreSurfaceTemp
-            // 
-            this.lbRLTyreSurfaceTemp.AutoSize = true;
-            this.lbRLTyreSurfaceTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbRLTyreSurfaceTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRLTyreSurfaceTemp.ForeColor = System.Drawing.Color.White;
-            this.lbRLTyreSurfaceTemp.Location = new System.Drawing.Point(62, 197);
-            this.lbRLTyreSurfaceTemp.Name = "lbRLTyreSurfaceTemp";
-            this.lbRLTyreSurfaceTemp.Size = new System.Drawing.Size(17, 17);
-            this.lbRLTyreSurfaceTemp.TabIndex = 9;
-            this.lbRLTyreSurfaceTemp.Text = "0";
-            // 
-            // lbRRTyreSurfaceTemp
-            // 
-            this.lbRRTyreSurfaceTemp.AutoSize = true;
-            this.lbRRTyreSurfaceTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbRRTyreSurfaceTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRRTyreSurfaceTemp.ForeColor = System.Drawing.Color.White;
-            this.lbRRTyreSurfaceTemp.Location = new System.Drawing.Point(367, 197);
-            this.lbRRTyreSurfaceTemp.Name = "lbRRTyreSurfaceTemp";
-            this.lbRRTyreSurfaceTemp.Size = new System.Drawing.Size(17, 17);
-            this.lbRRTyreSurfaceTemp.TabIndex = 10;
-            this.lbRRTyreSurfaceTemp.Text = "0";
-            // 
-            // lbFRBrakeTemp
-            // 
-            this.lbFRBrakeTemp.AutoSize = true;
-            this.lbFRBrakeTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbFRBrakeTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFRBrakeTemp.ForeColor = System.Drawing.Color.White;
-            this.lbFRBrakeTemp.Location = new System.Drawing.Point(367, 89);
-            this.lbFRBrakeTemp.Name = "lbFRBrakeTemp";
-            this.lbFRBrakeTemp.Size = new System.Drawing.Size(17, 17);
-            this.lbFRBrakeTemp.TabIndex = 11;
-            this.lbFRBrakeTemp.Text = "0";
-            // 
-            // lbRLBrakeTemp
-            // 
-            this.lbRLBrakeTemp.AutoSize = true;
-            this.lbRLBrakeTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbRLBrakeTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRLBrakeTemp.ForeColor = System.Drawing.Color.White;
-            this.lbRLBrakeTemp.Location = new System.Drawing.Point(62, 227);
-            this.lbRLBrakeTemp.Name = "lbRLBrakeTemp";
-            this.lbRLBrakeTemp.Size = new System.Drawing.Size(17, 17);
-            this.lbRLBrakeTemp.TabIndex = 12;
-            this.lbRLBrakeTemp.Text = "0";
-            // 
-            // lbRRBrakeTemp
-            // 
-            this.lbRRBrakeTemp.AutoSize = true;
-            this.lbRRBrakeTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbRRBrakeTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRRBrakeTemp.ForeColor = System.Drawing.Color.White;
-            this.lbRRBrakeTemp.Location = new System.Drawing.Point(367, 227);
-            this.lbRRBrakeTemp.Name = "lbRRBrakeTemp";
-            this.lbRRBrakeTemp.Size = new System.Drawing.Size(17, 17);
-            this.lbRRBrakeTemp.TabIndex = 13;
-            this.lbRRBrakeTemp.Text = "0";
-            // 
-            // lbFRTyrePressure
-            // 
-            this.lbFRTyrePressure.AutoSize = true;
-            this.lbFRTyrePressure.BackColor = System.Drawing.Color.Transparent;
-            this.lbFRTyrePressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbFRTyrePressure.ForeColor = System.Drawing.Color.White;
-            this.lbFRTyrePressure.Location = new System.Drawing.Point(299, 36);
-            this.lbFRTyrePressure.Name = "lbFRTyrePressure";
-            this.lbFRTyrePressure.Size = new System.Drawing.Size(17, 17);
-            this.lbFRTyrePressure.TabIndex = 14;
-            this.lbFRTyrePressure.Text = "0";
-            // 
-            // lbRLTyrePressure
-            // 
-            this.lbRLTyrePressure.AutoSize = true;
-            this.lbRLTyrePressure.BackColor = System.Drawing.Color.Transparent;
-            this.lbRLTyrePressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRLTyrePressure.ForeColor = System.Drawing.Color.White;
-            this.lbRLTyrePressure.Location = new System.Drawing.Point(164, 176);
-            this.lbRLTyrePressure.Name = "lbRLTyrePressure";
-            this.lbRLTyrePressure.Size = new System.Drawing.Size(17, 17);
-            this.lbRLTyrePressure.TabIndex = 15;
-            this.lbRLTyrePressure.Text = "0";
-            // 
-            // lbRRTyrePressure
-            // 
-            this.lbRRTyrePressure.AutoSize = true;
-            this.lbRRTyrePressure.BackColor = System.Drawing.Color.Transparent;
-            this.lbRRTyrePressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRRTyrePressure.ForeColor = System.Drawing.Color.White;
-            this.lbRRTyrePressure.Location = new System.Drawing.Point(301, 177);
-            this.lbRRTyrePressure.Name = "lbRRTyrePressure";
-            this.lbRRTyrePressure.Size = new System.Drawing.Size(17, 17);
-            this.lbRRTyrePressure.TabIndex = 16;
-            this.lbRRTyrePressure.Text = "0";
-            // 
-            // lbEngineTemp
-            // 
-            this.lbEngineTemp.AutoSize = true;
-            this.lbEngineTemp.BackColor = System.Drawing.Color.Transparent;
-            this.lbEngineTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbEngineTemp.ForeColor = System.Drawing.Color.White;
-            this.lbEngineTemp.Location = new System.Drawing.Point(233, 149);
-            this.lbEngineTemp.Name = "lbEngineTemp";
-            this.lbEngineTemp.Size = new System.Drawing.Size(17, 17);
-            this.lbEngineTemp.TabIndex = 18;
-            this.lbEngineTemp.Text = "0";
+            this.pbThrottle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.pbThrottle.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pbThrottle.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pbThrottle.Location = new System.Drawing.Point(89, 138);
+            this.pbThrottle.Name = "pbThrottle";
+            this.pbThrottle.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.pbThrottle.Size = new System.Drawing.Size(26, 186);
+            this.pbThrottle.Step = 1;
+            this.pbThrottle.TabIndex = 2;
+            this.pbThrottle.Value = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(978, 559);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.vpbGaz);
@@ -479,6 +489,7 @@ namespace f1Teleform
         private System.Windows.Forms.Label lbRLTyrePressure;
         private System.Windows.Forms.Label lbFRTyrePressure;
         private System.Windows.Forms.Label lbEngineTemp;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
 
